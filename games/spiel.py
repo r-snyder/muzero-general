@@ -39,7 +39,7 @@ class MuZeroConfig:
         self.observation_shape =  tuple(self.game.observation_tensor_shape()) # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
         self.action_space = list(range(self.game.policy_tensor_shape()[0]))  # Fixed list of all possible actions. You should only edit the length
         self.players = list(range(self.game.num_players()))  # List of players. You should only edit the length
-        self.stacked_observations = 0  # Number of previous observations and previous actions to add to the current observation
+        self.stacked_observations = 10  # Number of previous observations and previous actions to add to the current observation
 
         # Evaluate
         self.muzero_player = 0  # Turn Muzero begins to play (0: MuZero plays first, 1: MuZero plays second)
@@ -48,7 +48,7 @@ class MuZeroConfig:
 
 
         ### Self-Play
-        self.num_workers = 1  # Number of simultaneous threads/workers self-playing to feed the replay buffer
+        self.num_workers = 8  # Number of simultaneous threads/workers self-playing to feed the replay buffer
         self.selfplay_on_gpu = False
         self.max_moves = self.game.max_game_length()  # Maximum number of moves if game is not finished before
         self.num_simulations = 25  # Number of future moves self-simulated
