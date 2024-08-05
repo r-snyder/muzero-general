@@ -246,6 +246,7 @@ class SelfPlay:
 
 
 # Game independent
+# TODO: Add Batch MCTS
 class MCTS:
     """
     Core Monte Carlo Tree Search algorithm.
