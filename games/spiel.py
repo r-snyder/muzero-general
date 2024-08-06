@@ -53,7 +53,7 @@ class MuZeroConfig:
         self.max_moves = self.game.max_game_length()  # Maximum number of moves if game is not finished before
         self.num_simulations = 20  # Number of future moves self-simulated
         self.discount = 0.1  # Chronological discount of the reward
-        self.temperature_threshold = 30  # Number of moves before dropping the temperature given by visit_softmax_temperature_fn to 0 (ie selecting the best action). If None, visit_softmax_temperature_fn is used every time
+        self.temperature_threshold = None  # Number of moves before dropping the temperature given by visit_softmax_temperature_fn to 0 (ie selecting the best action). If None, visit_softmax_temperature_fn is used every time
 
         # Root prior exploration noise
         self.root_dirichlet_alpha = 0.3
