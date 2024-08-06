@@ -31,7 +31,7 @@ class MuZeroConfig:
         self.game = game
 
         self.seed = 0  # Seed for numpy, torch and the game
-        self.max_num_gpus = None  # Fix the maximum number of GPUs to use. It's usually faster to use a single GPU (set it to 1) if it has enough memory. None will use every GPUs available
+        self.max_num_gpus = 1  # Fix the maximum number of GPUs to use. It's usually faster to use a single GPU (set it to 1) if it has enough memory. None will use every GPUs available
 
 
 
@@ -51,7 +51,7 @@ class MuZeroConfig:
         self.num_workers = 10  # Number of simultaneous threads/workers self-playing to feed the replay buffer
         self.selfplay_on_gpu = False
         self.max_moves = self.game.max_game_length()  # Maximum number of moves if game is not finished before
-        self.num_simulations = 100  # Number of future moves self-simulated
+        self.num_simulations = 20  # Number of future moves self-simulated
         self.discount = 0.1  # Chronological discount of the reward
         self.temperature_threshold = 30  # Number of moves before dropping the temperature given by visit_softmax_temperature_fn to 0 (ie selecting the best action). If None, visit_softmax_temperature_fn is used every time
 
@@ -76,7 +76,7 @@ class MuZeroConfig:
         self.reduced_channels_reward = 128  # Number of channels in reward head
         self.reduced_channels_value = 128 # Number of channels in value head
         self.reduced_channels_policy = 128  # Number of channels in policy head
-        self.resnet_fc_reward_layers = [256, 246]  # Define the hidden layers in the reward head of the dynamic network
+        self.resnet_fc_reward_layers = [256, 256]  # Define the hidden layers in the reward head of the dynamic network
         self.resnet_fc_value_layers = [256, 256]  # Define the hidden layers in the value head of the prediction network
         self.resnet_fc_policy_layers = [256, 256]  # Define the hidden layers in the policy head of the prediction network
 
@@ -95,7 +95,7 @@ class MuZeroConfig:
         self.save_model = True  # Save the checkpoint in results_path as model.checkpoint
         self.training_steps = 1000000  # Total number of training steps (ie weights update according to a batch)
         self.batch_size = 64  # Number of parts of games to train on at each training step
-        self.checkpoint_interval = 100  # Number of training steps before using the model for self-playing
+        self.checkpoint_interval = 10  # Number of training steps before using the model for self-playing
         self.value_loss_weight = 0.25  # Scale the value loss to avoid overfitting of the value function, paper recommends 0.25 (See paper appendix Reanalyze)
         self.train_on_gpu = torch.cuda.is_available()  # Train on GPU if available
         # TODO: Add AdaBelief Optim. 
